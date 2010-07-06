@@ -1297,8 +1297,6 @@
 @def Subr:sudmtu in   subs/sudmtu.F:L1 ---> subroutine sudmtu(nbas,nsp,nlibu,lmaxu,ssite,sspec,idvsh,lldau,ng,g,istab,dmatu,vorb)
 @dcl Type:s_site in Subroutine:sudmtu  subs/sudmtu.F:L50 ---> type(s_site)::ssite(*)
 @dcl Type:s_spec in Subroutine:sudmtu  subs/sudmtu.F:L51 ---> type(s_spec)::sspec(*)
-@def Subr:suemph in   subs/suemph.F:L1 ---> subroutine suemph(sspec,hamrul,ntab,iax,rtab,nbas,nttab,ips,ntype,ltype,htype,esite,isite,epair,ipair)
-@dcl Type:s_spec in Subroutine:suemph  subs/suemph.F:L98 ---> type(s_spec)::sspec(*)
 @def Subr:sugcut in   subs/sugcut.F:L1 ---> subroutine sugcut(mode,nspec,sspec,alat,ng,gv,tol)
 @dcl Type:s_spec in Subroutine:sugcut  subs/sugcut.F:L34 ---> type(s_spec)::sspec(*)
 @def Subr:gen_hamindex in   subs/suham.F:L13 ---> subroutine gen_hamindex(sham,sbz,ssite,sspec,slat,nl,nbas,iprmb,ldim,qplist,nkp,siginit)
@@ -4106,10 +4104,6 @@
 @cal Subr:praldm in Subroutine:sudmtu  subs/sudmtu.F:L329 ---> call praldm(0,30,30,havesh,nbas,nsp,lmaxu,lldau,sspec,ssite,' Symmetrized vorb',vorb)
 @cal Subr:rotycs in Subroutine:sudmtu  subs/sudmtu.F:L344 ---> call rotycs ( 2 * i - 1 ,dmwk_zv ,nbas ,nsp ,lmaxu ,sspec  ,ssite ,lldau )
 @cal Subr:praldm in Subroutine:sudmtu  subs/sudmtu.F:L348 ---> call praldm ( 0 ,30 ,30 ,i ,nbas ,nsp ,lmaxu ,lldau ,sspec ,ssite ,' Vorb' ,dmwk_zv )
-@use Modu:m_struc_def in Subroutine:suemph  subs/suemph.F:L4 ---> use m_struc_def
-@cal Subr:spacks_copy in Subroutine:suemph  subs/suemph.F:L295 ---> call spacks_copy('u',sspec(i_spacks)%name,ips(ib1),ips(ib1),alabl,i_spacks)
-@cal Subr:spacks_copy in Subroutine:suemph  subs/suemph.F:L314 ---> call spacks_copy('u',sspec(i_spacks)%name,ips(ib1),ips(ib1),alabl,i_spacks)
-@cal Subr:spacks_copy in Subroutine:suemph  subs/suemph.F:L346 ---> call spacks_copy('u',sspec(i_spacks)%name,ips(ib2),ips(ib2),alabl2,i_spacks)
 @use Modu:m_struc_def in Subroutine:sugcut  subs/sugcut.F:L3 ---> use m_struc_def
 @cal Subr:spacks_copy in Subroutine:sugcut  subs/sugcut.F:L66 ---> call spacks_copy('u',sspec(i_spacks)%name,is,is,spid,i_spacks)
 @cal Subr:uspecb in Subroutine:sugcut  subs/sugcut.F:L70 ---> call uspecb(0,1,sspec,is,is,lh,rsmh,eh,nkapi)
