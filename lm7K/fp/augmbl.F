@@ -881,7 +881,7 @@ Co   s     :overlap matrix
 Cr Remarks
 Cu Updates
 C ----------------------------------------------------------------------
-C     implicit none
+      implicit none
 C ... Passed parameters
       integer kmax,lmxa,nlma,ndimh,isp
       double precision sig(0:kmax,0:kmax,0:lmxa,isp)
@@ -892,6 +892,8 @@ C ... Local parameters
       parameter (nlmax=49)
       integer kjtop,i1,i2,ilm,k1,k2,l,kjlm,lla(nlmax)
       data lla/0,3*1,5*2,7*3,9*4,11*5,13*6/
+      integer:: j1,j2
+
 
       if (nlma .gt. nlmax) call rxi('augqs3: increase nlmax to',nlma)
 
@@ -911,11 +913,20 @@ C   ... Make sig*b in g
         enddo
 C   ... Make dot products with vectors i1
         do  i1 = 1, i2
-c         csum=zdotc(kjtop,b(0,1,i1),1,g,1)
+#if 1
+          csum=(0d0,0d0)
+          do j2=1,nlma
+          do j1=0,kmax
+            csum=csum+ dconjg(b(j1,j2,i1)*g(j1,j2))
+          enddo
+          enddo
+#else
+cki comment:  wrong access pattern for b
           csum = (0d0,0d0)
           do  kjlm = 0, kjtop-1
             csum = csum + dconjg(b(kjlm,1,i1))*g(kjlm,1)
           enddo
+#endif
           s(i1,i2) = s(i1,i2) + csum
         enddo
       enddo
@@ -943,7 +954,7 @@ Cu Updates
 Cu 01 Sep 04 folded so into complex potential
 Cu 29 Jun 04 (A. Chantis) added 3- center so*Sz*Lz (spherical part)
 C ----------------------------------------------------------------------
-C     implicit none
+      implicit none
 C ... Passed parameters
       integer kmax,nlma,ndimh,isp
       double precision ppi(0:kmax,0:kmax,nlma,nlma,isp)
@@ -951,6 +962,7 @@ C ... Passed parameters
      .g(0:kmax,nlma),csum
 C ... Local parameters
       integer i1,i2,jlm1,jlm2,k1,k2,kjtop,kjlm
+      integer:: j1,j2
 
 C     call tcn('augqp3')
       kjtop = nlma*(kmax+1)
@@ -973,9 +985,17 @@ C   ... Make dot products with vectors i1
         do  i1 = 1, i2
 C         csum=zdotc(kjtop,b(0,1,i1),1,g,1)
           csum = (0d0,0d0)
+#if 1
+          do j2=1,nlma
+          do j1=0,kmax
+            csum=csum+ dconjg(b(j1,j2,i1)*g(j1,j2))
+          enddo
+          enddo
+#else
           do  kjlm = 0, kjtop-1
             csum = csum + dconjg(b(kjlm,1,i1))*g(kjlm,1)
           enddo
+#endif
           h(i1,i2) = h(i1,i2) + csum
         enddo
       enddo

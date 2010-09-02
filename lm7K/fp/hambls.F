@@ -230,7 +230,9 @@ Cchp3         integer:: oppi(3,nbas)
       type(s_lat)::slat
 
       double complex smpot(k1,k2,k3)
-      double complex h(ndimh,ndimh,ispc),s(ndimh,ndimh,ispc)
+cki      double complex h(ndimh,ndimh,ispc),s(ndimh,ndimh,ispc)
+cki may be dangerous
+      double complex h(ndimh,ndimh,*),s(ndimh,ndimh,*)
 C ... Local parameters
       double precision qpi(3,4),tol,ddot,plat(3,3),qlat(3,3),norm(4,4),
      .wt(4),swt,dq,emin,emax,fasig,fbsig,asig,bsig,xx,sigp(10)
