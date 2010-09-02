@@ -1671,7 +1671,8 @@ c              call defi(oigv2,3*napw)
               call pshpr(iprint()-10)
               !print *,'xxx xxx 2222'
               call gvlst2 ( alat , plat , xv , 0 , 0 , 0 , pwgmin , pwgmax 
-     .        , 0 , 2 , 0 , napw , kv_iv , dum , dum , igv2x ) 
+cki     .        , 0 , 2 , 0 , napw , kv_iv , dum , dum , igv2x ) 
+     .        , 0 , 2 , napw , napw , kv_iv , dum , dum , igv2x ) 
 
               !print *,'xxx xxx 3333'
               deallocate(kv_iv)

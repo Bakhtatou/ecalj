@@ -707,7 +707,8 @@ C ... Passed parameters
       integer ie,ir,nlm1,nlm2,offlm,ng
       double precision yl(ng,1),he(ng,1),hr(ng,1),cosgp(1),singp(1),
      .wk(ng),etab(ie),rtab(ir),vol
-      double complex c(ng,nlm2),cfac(nlm2)
+cki      double complex c(ng,nlm2),cfac(nlm2)
+      double complex c(ng,*),cfac(*)
 C ... Local parameters
       integer i,ilm,offi,lmax,ll,l,m
       double precision xxx,fac1,pi
@@ -934,9 +935,10 @@ C ... Local parameters
         return
       enddo
 
-C      write(*,'(10i5)') igapw
+      write(*,*)'ifindiv=',ng
+      write(*,*) 'igapw=',igapw
 C      do ig=1,ng
-C        write(6,'(i5,2x,10i5)') ig, igv(ig,:)
+C        write(6,'(i10,2x,10i6)') ig, igv(ig,:)
 C      enddo
       call rx('ifindiv: igapw not found in igv')
 
