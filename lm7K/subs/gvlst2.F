@@ -158,6 +158,7 @@ C        endif
               ig = ig+1
 C          print 333, ig,i1,i2,i3,qpg,qpg(1)**2+qpg(2)**2+qpg(3)**2-gmax2
 C  333     format(i6,3i4,3f15.9,1pe10.2)
+             if (ngmx>0) then !--- ngmx
               if (job0 .ne. 0) then
                 kv(ig,1) = k1
                 kv(ig,2) = k2
@@ -178,6 +179,7 @@ C  333     format(i6,3i4,3f15.9,1pe10.2)
                   gv(ig,3) = qpg(3)
                 endif
               endif
+             endif !--- ngmx 
             endif
           enddo
         enddo
