@@ -1537,15 +1537,15 @@ C       In the SO case, still a loop isp=1..2
 C       isp=1 generates just the 11 block
         if(debug) print *,'goto spin loop nsp=',nsp
         qpo=qp !moved here on mar2012 only for band plot
+        if(.not.noshorbz()) call shorbz(qp,qp,qlat,plat)
         do  isp = 1, nsp
           if(debug)  print *,'vvvvvv isp loop isp=',isp
           if (onesp .eq. 0 .or. isp .eq. onesp) then
-
-             print *,' test run ------> temporarly comment out shorbz'
+c             print *,' test run ------> temporarly comment out shorbz'
 cctakao do we need to do shorbz? --> furthermore, shorbz is probably wrong.---> see new algolism shortn3.
-            if(.not.noshorbz()) then
-              if (isp .eq. 1 .or. isp .eq. onesp) call shorbz(qp,qp,qlat,plat)
-            endif
+c            if(.not.noshorbz()) then
+c              if (isp .eq. 1 .or. isp .eq. onesp) call shorbz(qp,qp,qlat,plat)
+c            endif
 
 
             if(debug)  print *,'vvvvvv xxx cccccccccc1 pwemax pwmode',pwemax,pwmode

@@ -62,6 +62,7 @@ FFLAGS_LESS2 = -O1 -fomit-frame-pointer  $(FFLAGS_COMMON)
 FFLAGS_LESS3 = -O0 -fomit-frame-pointer  $(FFLAGS_COMMON)
 FFLAGS_NONE = -O0   $(FFLAGS_COMMON)
 FLAGS_LESS67 = -O0  $(FFLAGS_COMMON)
+
 #
 # safer option (debug)
 #

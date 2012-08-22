@@ -54,7 +54,7 @@
       integer ir0,ir1,nri,incn
  3584 logical lz
       parameter (incn=50)
-      real(8):: tol=1d-10
+      real(8):: tol=1d-8 !1d-10 until aug2012
 
       integer:: irr,j,idiv,isp,icenter,k
       real(8):: a,bb,  !takao used to get derivetive of ri. See vxcnls.F

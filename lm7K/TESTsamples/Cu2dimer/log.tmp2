@@ -16,3 +16,24 @@ fa op 1  11  0.960 -0.100  stf     0 -6413  ev  0.43537 -0.05123  pq  4.41  0.00
 fa op 2   9  0.960 -0.324  stf     0    44  ev -0.36668 -0.37034  pq  3.88 10.00
 fa op sumev   -4.04217   opt basis   -3.93656   err  0.10561
 fa Z  29.0   rm  49.03  qc 18.00  qspl 0.02624  dq 0.00000  Etot   -3309.697457
+  LMFA  vn 7.00(LMFA 7.0)  verb 35
+fa op 0  17  0.960 -2.500  stf     0     5  ev -8.41853 -8.42845  pq  3.95  2.00
+fa op 1  17  0.960 -2.500  stf     0     6  ev -5.28905 -5.30026  pq  3.94  6.00
+fa op 2   9  0.960 -0.324  stf     0    44  ev -0.36668 -0.37034  pq  3.88 10.00
+fa op sumev  -52.36184   opt basis  -52.23816   err  0.12368
+fa Z  29.0   rm  49.03  qc 10.00  qspl 0.00000  dq 0.00000  Etot   -3309.697457
+ CPU time:    0.272s     Mon Aug  6 15:14:19 2012   on  
+  LMFA  vn 7.00(LMFA 7.0)  verb 35
+fa op 0  17  0.960 -2.500  stf     0     5  ev -8.41853 -8.42845  pq  3.95  2.00
+fa op 1  17  0.960 -2.500  stf     0     6  ev -5.28905 -5.30026  pq  3.94  6.00
+fa op 2   9  0.960 -0.324  stf     0    44  ev -0.36668 -0.37034  pq  3.88 10.00
+fa op sumev  -52.36184   opt basis  -52.23816   err  0.12368
+fa Z  29.0   rm  49.03  qc 10.00  qspl 0.00000  dq 0.00000  Etot   -3309.697457
+ CPU time:    0.264s     Mon Aug  6 15:14:33 2012   on  
+  LMFA  vn 7.00(LMFA 7.0)  verb 35
+fa op 0  17  0.960 -2.500  stf     0     5  ev -8.41853 -8.42845  pq  3.95  2.00
+fa op 1  17  0.960 -2.500  stf     0     6  ev -5.28905 -5.30026  pq  3.94  6.00
+fa op 2   9  0.960 -0.324  stf     0    44  ev -0.36668 -0.37034  pq  3.88 10.00
+fa op sumev  -52.36184   opt basis  -52.23816   err  0.12368
+fa Z  29.0   rm  49.03  qc 10.00  qspl 0.00000  dq 0.00000  Etot   -3309.697457
+ CPU time:    0.264s     Mon Aug  6 15:14:51 2012   on  

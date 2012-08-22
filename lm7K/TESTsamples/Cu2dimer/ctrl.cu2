@@ -5,7 +5,7 @@
 ### Do lmf --input to see all effective category and token ###
 ### It will be not so difficult to edit ctrlge.py for your purpose ###
 VERS    LM=7 FP=7        # version check. Fixed.
-IO      SHOW=T VERBOS=35
+IO      SHOW=T VERBOS=35 TIM=3,3
              # SHOW=T shows readin data (and default setting at the begining of console output)
 	     # It is useful to check ctrl is read in correctly or not (equivalent with --show option).
 	     # larger VERBOSE gives more detailed console output.
@@ -28,7 +28,7 @@ STRUC   ALAT={alat} DALAT=0 PLAT=0.9 0 0 0 1 0 0 0 1.1 # Anisotropic cell
 SITE    ATOM=Cu POS={dd}*sqrt(1/3)*.5    {dd}*sqrt(1/3)*.5  {dd}*sqrt(1/3)*.5
         ATOM=Cu POS=-{dd}*sqrt(1/3)*.5  -{dd}*sqrt(1/3)*.5 -{dd}*sqrt(1/3)*.5
 SPEC
-    ATOM=Cu Z=29 R=1.92 PZ=0,0,13.9  P=0,0,4.2 
+    ATOM=Cu Z=29 R=1.92 PZ=3.9,3.9,3.9  P=0,0,4.2 
       EH=-0.1 -0.1 -0.1 -0.1  RSMH=0.96 0.96 0.96 0.96 
       EH2=-2 -2 -2 -2  RSMH2=0.96 0.96 0.96 0.96 
       KMXA={kmxa}  LMX=3 LMXA=4 NMCORE=1
@@ -43,7 +43,10 @@ SPEC
 BZ    NKABC={nk} {nk} {nk}  # division of BZ for q points.
       METAL=3
 
-                # METAL=3 is safe setting. For insulator, METAL=0 is good enough.
+                # METAL=3 is safe setting (double path; 1st for weight, 2nd for integration).
+                # METAL=2 is faster but weights for integration is from previous iteration 
+                #   (it can be a little unstable)
+                # For insulator, METAL=0 is good enough. 
 		# When you plot dos, set SAVDOS=T and METAL=3, and with DOS=-1 1 (range) NPTS=2001 (division) even for insulator.
 		#   (SAVDOS, DOS, NPTS gives no side effect for self-consitency calculaiton).
                 # 
@@ -57,7 +60,7 @@ BZ    NKABC={nk} {nk} {nk}  # division of BZ for q points.
 
       #Setting for molecules. No tetrahedron integration. (Smearing))
       # See http://titus.phy.qub.ac.uk/packages/LMTO/tokens.html
-%const bzw=0  fsmom=0.0
+%const bzw=1e-4  fsmom=0.0
       TETRA=0 
       N=-1     #Negative is Fermi distribution function W= gives temperature.
       W={bzw}  #This corresponds to T=157K as shown in console output
@@ -125,10 +128,15 @@ HAM   NSPIN={nspin}   # Set NSPIN=2 for spin-polarize case; then set SPEC_MMOM (
 		#    (subs/evxc.F had a problem when =2 if rho(up)=0 or rho(down)=0).
                 # =103 PBE-GGA
 
-      PWMODE=11 # 10: MTO basis only (LMTO) PW basis is not used.
-                # 11: APW+MTO        (PMT)
-                # 12: APW basis only (LAPW) MTO basis is not used.
-
+      PWMODE=1  # 0: MTO basis only (LMTO) PW basis is not used.
+                # 1: APW+MTO        (PMT)
+                # 2: APW basis only (LAPW) MTO basis is not used.
+                # NOTE: q-independent number of APW (determined at q=0).
+                #       This will be important for QSGW case.
+                #
+                # ===  +10 means q-dependent number of APW, that is, ===
+                # 11: PMT   
+                # 12: LAPW: 
       PWEMAX={pwemax} # (in Ry). When you use larger pwemax more than 5, be careful
                       # about overcompleteness. See GetStarted.
       ELIND=0    # this is to accelarate convergence. Not affect to the final results.

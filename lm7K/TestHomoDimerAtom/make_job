@@ -21,7 +21,7 @@ else:
          make_job (required --bg or --pjsub, --atom or --dimer): (optional --continue --nrel)
            For given jobatomlist(--atom) or jobdimerlist(--dimer), 
          you can obtain TEST.bg/ TEST.bg.atom/ and so on,
-         jobque file is the main script. You need to edit jobdimerlist to specify dimers/atoms to calculate. 
+         jobque file is the main script. You need to edit jobdimerlist to specify dimers/atoms to calculate.
  """
   sys.exit()
 
