@@ -863,15 +863,14 @@ tail = tail + "     XCFUN=" + xcfun_val + """
           # =1 for VWN.
                 # =2 Birth-Hedin (if this variable is not set).
 		#    (subs/evxc.F had a problem when =2 if rho(up)=0 or rho(down)=0).
-                # =103 PBE-GGA
+                # =103 PBE-GGA !this can be slightly unstable in cases...
 
-      PWMODE=1  # 0: MTO basis only (LMTO) PW basis is not used.
+      PWMODE=11 # 0: MTO basis only (LMTO) PW basis is not used.
                 # 1: APW+MTO        (PMT)
                 # 2: APW basis only (LAPW) MTO basis is not used.
-                # NOTE: q-independent number of APW (determined at q=0).
-                #       This will be important for QSGW case.
-                #
-                # ===  +10 means q-dependent number of APW, that is, ===
+                #  
+                # NOTE: For QSGW, 11 or 12 are requied.
+                # ===  +10 means q-dependent number of APW (energy cutoff), that is, ===
                 # 11: PMT   
                 # 12: LAPW: 
       PWEMAX={pwemax} # (in Ry). When you use larger pwemax more than 5, be careful

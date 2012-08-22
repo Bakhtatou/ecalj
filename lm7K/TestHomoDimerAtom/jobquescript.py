@@ -156,10 +156,12 @@ for comm in patt:
     if len(comm) <5 : continue
     if comm[0]=='#': continue
 # distance
-    dat = keydata(comm, 'distance=',';')
-    distance = rangereal(float(dat[0]),float(dat[1]),0.1)
+    if(atom==1): 
+        distance=['0.0']
+    else:    
+        dat = keydata(comm, 'distance=',';')
+        distance = rangereal(float(dat[0]),float(dat[1]),0.1)
 #    print distance
-    if(atom==1): distance=['0.0']
     fsmoms = keydata(comm, 'fsmom=',',')
     rstars = keydata(comm, 'rstar=',',')
     enddat = enddata(comm)
