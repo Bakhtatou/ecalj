@@ -21,7 +21,7 @@ else:
          make_job (required --bg or --pjsub, --atom or --dimer): (optional --continue --nrel)
            For given jobatomlist(--atom) or jobdimerlist(--dimer), 
          you can obtain TEST.bg/ TEST.bg.atom/ and so on,
-         jobque file is the main script. You need to edit jobdimerlist to specify dimers/atoms to calculate.
+         jobque file is the main script. You need to edit jobdimerlist to specify dimers/atoms to calculate. 
  """
   sys.exit()
 
@@ -33,20 +33,22 @@ if '--nrel' in sys.argv:
 if '--dimer' in sys.argv:
 #--- dimer section
   if not os.path.exists(work): os.mkdir(work)
-  ccc='cp jobdimerlist atomlist.bash extra.bash homodimerdistance.bash '+work 
+  ccc='cp jobdimerlist atomlist.bash extra.bash extra_nrel.bash homodimerdistance.bash '+work 
   os.system(ccc)
   os.chdir(work)
   if os.path.exists("jobque"): os.rename("jobque", "jobque.bk")
-  os.system('../jobquescript.py jobdimerlist '+' '.join(sys.argv))
+  #os.system('echo ../jobquescript.py jobdimerlist '+' '.join(sys.argv))
+  os.system('../jobquescript.py jobdimerlist '+' '.join(sys.argv[1:]))
   os.system("chmod +x jobmol*")
 
 #----- atom section.
 if '--atom' in sys.argv:
   work= work+'.atom'
   if not os.path.exists(work): os.mkdir(work)
-  ccc='cp jobatomlist atomlist.bash extra.bash homodimerdistance.bash '+work
+  ccc='cp jobatomlist atomlist.bash extra.bash extra_nrel.bash homodimerdistance.bash '+work
   os.system(ccc)
   os.chdir(work)
   if os.path.exists("jobque"): os.rename("jobque", "jobque.bk")
-  os.system('../jobquescript.py jobatomlist --atom '+' '.join(sys.argv))
+  #os.system('echo xxxxxxxx ../jobquescript.py jobatomlist --atom '+' '.join(sys.argv[1:]))
+  os.system('../jobquescript.py jobatomlist --atom '+' '.join(sys.argv[1:]))
   os.system('chmod +x jobatom*')
