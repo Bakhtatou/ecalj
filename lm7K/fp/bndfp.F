@@ -415,6 +415,7 @@ ckino
 
       integer:: ntqxx,ispx,ix99 !,nevec unused.
       real(8)::eseavrmean
+      character procidstr*25
 #if !defined(__INTEL_COMPILER)
       integer:: unlink
 #endif
@@ -1902,9 +1903,12 @@ c              deallocate(ww_rv)
                   savez=.false. ;  getz=.true.
                 endif
                 if(initiqisp) then
-                  ifig = fopna('eigze',-1,4)
+                  write(procidstr,'(i10)') procid !for each node
+                  !ifig = fopna('eigze',-1,4)
+                  ifig = fopna('eigze'//trim(adjustl(procidstr)),-1,4) !kino's fix sep2012
                   call fclose(ifig)
-                  ifig = fopna('eigze',-1,4)
+                  !ifig = fopna('eigze',-1,4)
+                  ifig = fopna('eigze'//trim(adjustl(procidstr)),-1,4) !kino's fix sep2012
                   initiqisp=.false.
                 endif  
               endif 
