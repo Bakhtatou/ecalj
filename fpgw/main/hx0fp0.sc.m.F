@@ -126,7 +126,7 @@ c      real(8),allocatable:: ppovl(:,:)
       character*9 fileps
       character*15 filepsnolfc
       logical :: paralellx0=.true. !, hist
-c      character(5) :: charnum5
+      character(5) :: charnum5
 c      character(8) :: xt
       character(20):: xxt
 
@@ -207,6 +207,7 @@ c     &  w_k(:,:,:),w_ks(:,:,:),w_kI(:,:,:),w_ksI(:,:,:), llw(:,:), llwI(:,:),
       integer:: l2nl, nmbas_in,schi=-9999!dummy
       logical:: eibz4x0,tiii,iprintx,chipm=.false.
       real(8)::qvv(3),ecut,ecuts,hartree,rydberg,pi
+      character(128):: vcoudfile
       
 c      integer(4),allocatable :: iclasst(:)
 !-------------------------------------------------------------------------
@@ -938,10 +939,12 @@ cccccccccccccccccccccccccccccccccccccccccc
 
         if(newaniso2) then
 !! qq is used.
-          if(sum(abs(qq))<1d-6) then !reopen Vcoud
-            idummy  = iclose('Vcoud') !close and open again. This is because first data in Voud is for q=0
-            ifvcoud = iopen('Vcoud',0,0,0)
-          endif
+c          if(sum(abs(qq))<1d-6) then !reopen Vcoud
+c            idummy  = iclose('Vcoud') !close and open again. This is because first data in Voud is for q=0
+c            ifvcoud = iopen('Vcoud',0,0,0)
+c          endif
+          vcoudfile='Vcoud.'//charnum5(iq)  !this is closed at the end of do 1001
+          ifvcoud = iopen(trim(vcoudfile),0,-1,0)
           read(ifvcoud) ngb0
           read(ifvcoud) qvv
 c         print *,'qvv=',qvv
@@ -957,6 +960,7 @@ c         do igb1=1,ngb0
 c           print *,'qvv sum vcousq ',igb1,vcousq(igb1)
 c         enddo
           read(ifvcoud) zcousq
+          idummy=iclose(trim(vcoudfile))
           vcousq=sqrt(vcousq)
         endif
 !!

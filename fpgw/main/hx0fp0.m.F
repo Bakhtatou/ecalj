@@ -46,13 +46,13 @@ C-------------------------------------------------
       implicit none
       real(8):: q(3),  qgbin(3),qx(3)
       real(8):: ua=1d0 ! this is a dummy.
-      integer(4):: ifrb(2),ifcb(2),ifrhb(2),ifchb(2) !,ifev(2)
-      integer(4):: ndble=8
-      integer(4):: nword
+      integer:: ifrb(2),ifcb(2),ifrhb(2),ifchb(2) !,ifev(2)
+      integer:: ndble=8
+      integer:: nword
 
       real(8),allocatable:: vxcfp(:,:),
      &  wqt(:), wgt0(:,:),q0i(:,:)
-      integer(4),allocatable :: ngvecpB(:,:,:),ngveccB(:,:) !,ngveccB(:,:,:)
+      integer,allocatable :: ngvecpB(:,:,:),ngveccB(:,:) !,ngveccB(:,:,:)
      &           , ngvecp(:,:), ngvecc(:,:), !,ngpn(:),ngcni(:),iqib(:),
      &   nx(:,:),nblocha(:),lx(:),ifppb(:)   !ongveccBr(:,:,:)
       complex(8),allocatable:: geigB(:,:,:,:) ,geig(:,:),vcoul(:,:),
@@ -71,7 +71,7 @@ c     &  freqr(:),freqi(:) !rw(:,:),cw(:,:) --->zw
       ! so as to reduce the memory usage.
       complex(8) :: fff,img=(0d0,1d0)
       complex(8),allocatable :: wwk(:,:,:)
-      integer(4),allocatable :: 
+      integer,allocatable :: 
      &         n1b(:,:,:),n2b(:,:,:),nbnb(:,:),nbnbtt(:,:),noccxvv(:)
 c     &         idtetf(:,:),ib1bz(:)
 
@@ -79,7 +79,7 @@ c     &         idtetf(:,:),ib1bz(:)
       real(8) ::qbzx(3),anfvec(3)
       logical :: anfexist
       logical :: debug
-      integer(4),allocatable:: ibasf(:)
+      integer,allocatable:: ibasf(:)
       real(8),allocatable :: transaf(:,:)
 
       real(8),allocatable :: freq_r(:),freq_i(:),freqx(:),wx(:),expa(:)
@@ -93,8 +93,8 @@ c      real(8),allocatable:: ppovl(:,:)
       character*11 fileps23
       character*16 filepsnolfc
       character*11  filele
-      logical :: paralellx0=.true. !, hist
-c      character(5) :: charnum5
+c      logical :: paralellx0=.true. !, hist
+      character(5) :: charnum5
 c      character(8) :: xt
       character(20):: xxt
 
@@ -108,17 +108,17 @@ c      integer :: nw2
       real(4),allocatable :: demin(:,:,:,:),demax(:,:,:,:)
       real(8),allocatable :: whw(:)
 
-      integer(4),allocatable:: ihw(:,:,:),nhw(:,:,:),jhw(:,:,:),ibjb(:,:,:,:)
+      integer,allocatable:: ihw(:,:,:),nhw(:,:,:),jhw(:,:,:),ibjb(:,:,:,:)
 
       logical::imagonly=.false.,realonly=.false. !,readgwinput
-      integer(4)::iopen,maxocc2,iclose,
+      integer::iopen,maxocc2,iclose,
      & ixc,iqxini,iqxend,iqxendx,
      &   nw_input,
      &   ifhbe,
      &   nprecb,mrecb,mrece,nlmtot,nqbzt,nband,
      &   nq0i,i,nq0ix,neps,ngrpmx,ngcmx,mxx,nqbze,nqibze,ini,ix,ngrpx
      &  ,mdimx,nbloch,nblochpmx,ifvcfpout,ndummy1,ndummy2,ifcphi,is,nwp,
-     &   ifepscond,nxx,ifvxcpout,ifgb0vec
+     &   ifepscond,nxx !,ifvxcpout,ifgb0vec
      &   ,nw0,iw,nwhis,ifinin,nw2,iw0,ifwwk,noccxv,noccx
      &   ,ifemesh,nprecx,mrecl,ifwd,ifrcwi,ifrcw,nspinmx,ifianf,ibas
      &   ,ibas1,irot,iq,ngb,iqixc2,ifepsdatnolfc,ifepsdat,ngbin,igc0dummy
@@ -129,10 +129,10 @@ c      integer :: nw2
       real(8):: dum1,dum2,dum3,wqtsum,epsrng,dnorm,
      & dwry,dwh,omg_c,omg2
 
-      integer(4)::nwin, incwfin,  verbose
+      integer::nwin, incwfin,  verbose
       real(8)::efin
 
-      integer(4):: bzcase, ngc,mrecg
+      integer:: bzcase, ngc,mrecg
       real(8):: qq(3),quu(3), deltaq(3) !,qqq(3)=0d0
       logical:: omitqbz=.false., noq0p
 
@@ -141,28 +141,28 @@ c      integer :: nw2
 
       real(8),allocatable:: qbz2(:,:)
       logical :: qbzreg
-      integer(4):: nbcut,nbcut2
+      integer:: nbcut,nbcut2
 
-      integer(4),allocatable:: nstibz(:) !Nov2004 Miyake's tote
+      integer,allocatable:: nstibz(:) !Nov2004 Miyake's tote
       real(8),allocatable:: ecqw(:,:),wiw(:)
       real(8) :: erpaqw, trpvqw, trlogqw,rydberg,hartree
      &   ,pi,efz,qfermi,alpha,rs,voltot,ecelgas,efx,valn
-      integer(4):: iqbz,iqindx,iflegas,nmx
-     &   ,ifcor,nqitot,isx,ntot,ieclog,iww,iqq,ieceig,ecorr_on=-1
+      integer:: iqbz,iqindx,iflegas,nmx
+     &   ,ifcor,nqitot,isx,ntot,ieclog,iww,iqq,ieceig,ecorr_on=-1,iqqv
       real(8) :: eclda_bh,eclda_pz,wk4ec,faca
       logical ::legas
 
       real(8),allocatable::    evall(:)
       complex(8),allocatable:: ovlpc(:,:),evecc(:,:)
-      integer(4):: nev !,  ifdpin
+      integer:: nev !,  ifdpin
 
 
       real(8),allocatable:: ecut(:),ecuts(:) ,totexc(:), trpv(:),trlog(:)
-      integer(4):: necut,iecut
+      integer:: necut,iecut
 
 ! mode23
-      integer(4):: ifv,lxx,ibasx,ilmx,ilm_r,nx_r,lb,nb,mb
-      integer(4),allocatable:: nxx_r(:)
+      integer:: ifv,lxx,ibasx,ilmx,ilm_r,nx_r,lb,nb,mb
+      integer,allocatable:: nxx_r(:)
       real(8),allocatable:: svec(:,:),spinvec(:,:),consvec(:,:),cvec(:,:)
       character*3:: charnum3
       character*4:: charnum4
@@ -170,15 +170,15 @@ c      integer :: nw2
       complex(8):: aaax,aaax0,addx !bbbx,bbbx25,bbbx35
       real(8)::chg1,chg2,spinmom,schi=1d0
 #ifdef COMMONLL
-      integer(4)::ll(51**2)
+      integer::ll(51**2)
       common/llblock/ll
 #else
-      integer(4) :: ll
+      integer :: ll
       external ll
 #endif
       complex(8),allocatable:: ovlp(:,:),evec(:,:),ovlpi(:,:)
       real(8),allocatable::eval(:)
-      integer(4):: new,nmxx,ii,iy,ipl1,ixx
+      integer:: new,nmxx,ii,iy,ipl1,ixx
 
       complex(8),allocatable :: ppovl(:,:),oo(:,:),x0meanx(:,:),x0inv(:,:),ppovlz(:,:),ppovlzinv(:,:)
       real(8)::qxx(3),ssm
@@ -186,37 +186,37 @@ c      integer :: nw2
       real(8),allocatable::SS(:),rwork(:),ss0(:)
       complex(8),allocatable:: UU(:,:),VT(:,:),work(:),zw0bk(:,:),ddd(:,:)
      & ,vtt(:,:),zzz(:,:),sqsvec(:),ooo(:,:),ppo(:,:) !,sqovlp(:,:),sqovlpi(:,:)
-      integer(4)::lwork,info,imin,ifzxq
+      integer::lwork,info,imin,ifzxq
       complex(8)::x0mx
       complex(8),allocatable:: UU0(:,:),VT0(:,:)
 
       logical :: ngczero=.false., sergeyv=.true., chipm=.false.,nolfco=.false. !sergeyv only
      &  ,epsmode=.false.,normalm=.false., eiqr=.false.
-      integer(4)::  ife, idum4 !ingczero,ifchipmn,ifchipm,
+      integer::  ife, idum4 !ingczero,ifchipmn,ifchipm,
       real(8):: qs,qt,ww,muu, ddq(3)
       character*11 ::ttt
 
       logical ::smbasis
-      integer(4):: nnmx,nomx
+      integer:: nnmx,nomx
 
 ! Feb2006 time-reversal=off case
       logical :: timereversal, testtimer,onceww
-      integer(4):: npm ,jpm,ncc,nw_i
+      integer:: npm ,jpm,ncc,nw_i
       real(8):: frr
 
       real(8):: sciss
-      integer(4):: ipm,nrecoff
+      integer:: ipm,nrecoff
 
       real(8),allocatable:: ebb(:)
       logical :: evaltest !for a debug test
       character*300:: aline
-      integer(4):: istat,nmbas,imb,imb1,imb2,nmbas_in
-      integer(4),allocatable:: imbas(:), imbas_s(:),iibas(:)
+      integer:: istat,nmbas,imb,imb1,imb2,nmbas_in
+      integer,allocatable:: imbas(:), imbas_s(:),iibas(:)
 !...
       complex(8),allocatable:: am1(:),am2(:),mmat(:,:),
      &     x0mat(:,:),x0matinv(:,:),eiqrm(:)
-      integer(4):: ifchipmn_mat, ifchipm_fmat !,ifchipm_mat
-      integer(4)::ifstoner,ifx,i1
+      integer:: ifchipmn_mat, ifchipm_fmat !,ifchipm_mat
+      integer::ifstoner,ifx,i1
       real(8):: Istoner,zz1,zz2,zz3,zz4,Istoner0,jzero2,dumm1,dumm2
       complex(8):: trr,trr0,trr1     , zzzx(4,4), zzzy(4,4),trrx,mmatx(4,4),denom(4,4)
       real(8),allocatable:: eee(:),mmnorm(:),
@@ -245,7 +245,8 @@ c     &  w_k(:,:,:),w_ks(:,:,:),w_kI(:,:,:),w_ksI(:,:,:), llw(:,:), llwI(:,:),
       integer:: l2nl
       logical:: eibz4x0,tiii,iprintx
       real(8):: qread(3)
-c      integer(4),allocatable :: iclasst(:)
+c      integer,allocatable :: iclasst(:)
+      character(128):: vcoudfile
 !! -------------------------------------------------------------------
       hartree=2d0*rydberg()
       pi         = 4d0*datan(1d0)
@@ -273,18 +274,19 @@ c      write(6,"(a)") '  10222 : <e^{iqr}|chi^+-|e^{iqr}> NoLFC'
       write(6,"(a)") 
      &      '-------------------------------------------------------'
 ! Test mode   write(6,"(a)") '   tettest(4) Realtetwt4(5) Realtetwt5(6) '
-      call readin6(ixc,iqxini,iqxend, idum4 ) !ingczero)
+c      call readin6(ixc,iqxini,iqxend, idum4 ) !ingczero)
+      read(5,*) ixc
       call headver('hx0fp0',ixc)
       call cputid(0)
 c      if(ixc==0) stop ' --- ixc=0 --- Choose computational mode!'
-      if(iqxini ==0 ) then
-        paralellx0=.false.
+c      if(iqxini ==0 ) then
+c        paralellx0=.false.
         write(6,"(' ixc = ',i4)") ixc
-      else
-        paralellx0=.true.
-        write(6,"(' PARALELL mode: ixc iqxini iqxend =',3i5)")
-     &  ixc, iqxini, iqxend
-      endif
+c      else
+c        paralellx0=.true.
+c        write(6,"(' PARALELL mode: ixc iqxini iqxend =',3i5)")
+c     &  ixc, iqxini, iqxend
+c      endif
 
       if(ixc<=6.or.ixc==22.or.ixc==23.or.ixc==101) then
         write(*,*)'these modes are removed now'
@@ -369,13 +371,13 @@ c      print *,'Timereversal=',Timereversal()
 
 C --- Readin BZDATA. See m_read_bzdata in gwsrc/rwbzdata.f
 !--------readin data set when you call read_BZDATA ---------------
-!       integer(4)::ngrp,nqbz,nqibz,nqbzw,nteti,ntetf,
+!       integer::ngrp,nqbz,nqibz,nqbzw,nteti,ntetf,
 !c     &   n_index_qbz
-!       integer(4):: n1,n2,n3
+!       integer:: n1,n2,n3
 !       real(8):: qbas(3,3),ginv(3,3),qbasmc(3,3),dq_bzcase2
 !       real(8),allocatable:: qbz(:,:),wbz(:),qibz(:,:)
 !     &    ,wibz(:),qbzw(:,:)
-!       integer(4),allocatable:: idtetf(:,:),ib1bz(:),idteti(:,:)
+!       integer,allocatable:: idtetf(:,:),ib1bz(:),idteti(:,:)
 !     &    ,nstar(:),irk(:,:),nstbz(:)
 !c  ,index_qbz(:,:,:)
 !-----------------------------------------------------------------
@@ -426,12 +428,12 @@ c      print *, idtetf
       call genallcf_v3(nwin,efin,incwfin) !in module m_genallcf_v3
       if(ngrp/= ngrp2) stop 'ngrp inconsistent: BZDATA and LMTO GWIN_V2'
 !...  These are allocated and setted by genallcf_v3
-!      integer(4)::  nclass,natom,nspin,nl,nn,nnv,nnc, ngrp,
+!      integer::  nclass,natom,nspin,nl,nn,nnv,nnc, ngrp,
 !     o  nlmto,nlnx,nlnxv,nlnxc,nlnmx,nlnmxv,nlnmxc, nctot,niw,nw
 !      real(8) :: alat,ef, diw,dw,delta,deltaw,esmr
 !      character(120):: symgrp
 !      character(6),allocatable :: clabl(:)
-!      integer(4),allocatable:: iclass(:)
+!      integer,allocatable:: iclass(:)
 !     &  ,nindxv(:,:),nindxc(:,:),ncwf(:,:,:) ,
 !     o    invg(:), il(:,:), in(:,:), im(:,:),   ilnm(:),  nlnm(:),
 !     o    ilv(:),inv(:),imv(:),  ilnmv(:), nlnmv(:),
@@ -533,20 +535,22 @@ C ... for legas test
       INQUIRE (FILE = 'LEGAS', EXIST = legas)
 
 C --- Check PARALELL.X0. Recently, we have not checked parerell mode. So be careful to use this.
-      if(chipm.and.(.not.legas).and.(.not.eiqr) ) then
-        iqxend = nqibz + nq0i
-      elseif(paralellx0) then
-        if(iqxini >99999) stop ' hx0fp0: iqxini >99999'
-        if(iqxend >99999) stop ' hx0fp0: iqxend >99999'
-        ifvcfpout = iopen('VCCFP.'
-     &     //xxt(iqxini,iqxend)
-     &  ,0,-1,0)
-        read(ifvcfpout) ndummy1, ndummy2
-      else
-        iqxend = nqibz + nq0i
-        ifvcfpout = iopen('VCCFP',0,-1,0)
-        read(ifvcfpout) ndummy1, ndummy2
-      endif
+c      if(chipm.and.(.not.legas).and.(.not.eiqr) ) then
+c        iqxend = nqibz + nq0i
+c      elseif(paralellx0) then
+c        if(iqxini >99999) stop ' hx0fp0: iqxini >99999'
+c        if(iqxend >99999) stop ' hx0fp0: iqxend >99999'
+c        ifvcfpout = iopen('VCCFP.'
+c     &     //xxt(iqxini,iqxend)
+c     &  ,0,-1,0)
+c        read(ifvcfpout) ndummy1, ndummy2
+c      else
+c        iqxend = nqibz + nq0i
+c        ifvcfpout = iopen('VCCFP',0,-1,0)
+c        read(ifvcfpout) ndummy1, ndummy2
+c      endif
+
+      iqxend = nqibz + nq0i
       print *, ' nqibz nqibze=',nqibz,nqibze
 
 C ... initialization of readEigen !readin m_hamindex
@@ -735,12 +739,12 @@ c$$$      endif
 C ... get eigenvector corresponds to exp(iqr) (q is almost zero).
       if(epsmode) then !iepsmode/=0) then ;  print *, ' read in Mix0vec'
         allocate(epsi(nw_i:nw,neps)) !5July2005 nwp should be used after it is defined!
-        if(paralellx0) then
-          ifgb0vec = iopen ( "Mix0vec."//xxt(iqxini,iqxend),1,3,0)
-        else
-          ifgb0vec = iopen ( "Mix0vec",1,3,0)
-        endif
-        print *, ' read end of Mix0vec'
+c        if(paralellx0) then
+c          ifgb0vec = iopen ( "Mix0vec."//xxt(iqxini,iqxend),1,3,0)
+c        else
+c          ifgb0vec = iopen ( "Mix0vec",1,3,0)
+c        endif
+c        print *, ' read end of Mix0vec'
       endif
 ! ...
       if(realomega) then
@@ -808,11 +812,11 @@ C ... maximum no. occupied valence states
       noccx      = noccxv + nctot
 
 C --- write energy mesh ---
-      if(paralellx0) then
-        ifemesh = iopen('emesh.hx0fp0.'//xxt(iqxini,iqxend),1,-1,0)
-      else
+c      if(paralellx0) then
+c        ifemesh = iopen('emesh.hx0fp0.'//xxt(iqxini,iqxend),1,-1,0)
+c      else
         ifemesh = iopen('emesh.hx0fp0',1,-1,0)
-      endif
+c      endif
       call writeemesh(ifemesh,freq_i,niw,freq_r,nwp,delta)
       if(debug) print *,' xxx1aax:'
 
@@ -834,34 +838,36 @@ C ... This is just to get nblochpmx
 
       mrecl  = nprecx*2*nblochpmx*nblochpmx/nword()
 C --- open WV* files
-      if(paralellx0) then
-        ifwd   = iopen('WV.d.'//xxt(iqxini,iqxend),1,-1,0)
-      else
+c      if(paralellx0) then
+c        ifwd   = iopen('WV.d.'//xxt(iqxini,iqxend),1,-1,0)
+c      else
         ifwd   = iopen('WV.d',1,-1,0)
-      endif
+c      endif
 
 ! July 2003. now WV.d contains true size of WVR.
       write (ifwd,"(1x,10i14)") !change format oct2005
      &   nprecx,mrecl,nblochpmx,nwp,niw,nqibz + nq0i-1,nw_i
       allocate(  zw(nblochpmx,nblochpmx) )
       if(debug) print *,' xxx1a2:'
-      if    (ixc==101) then
-        if(paralellx0) then
-          ifrcwi = iopen('WVI.'//xxt(iqxini,iqxend) ,0,-1,mrecl)
-        else
-          ifrcwi = iopen('WVI',0,-1,mrecl)
-        endif
-      elseif (normalm) then !ixc==1.or.sergeyv) then
-        if(paralellx0) then
-          ifrcw  = iopen('WVR.'//xxt(iqxini,iqxend),0,-1,mrecl)
-          ifrcwi = iopen('WVI.'//xxt(iqxini,iqxend),0,-1,mrecl)
-        else
-          ifrcw  = iopen('WVR',0,-1,mrecl)
-          ifrcwi = iopen('WVI',0,-1,mrecl)
-        endif
-c      elseif(chipm) then
-c        ifrcw  = iopen('WVR',0,-1,mrecl)
-      endif
+
+c$$$      if    (ixc==101) then
+c$$$c        if(paralellx0) then
+c$$$c          ifrcwi = iopen('WVI.'//xxt(iqxini,iqxend) ,0,-1,mrecl)
+c$$$c        else
+c$$$          ifrcwi = iopen('WVI',0,-1,mrecl)
+c$$$c        endif
+c$$$      elseif (normalm) then !ixc==1.or.sergeyv) then
+c$$$c        if(paralellx0) then
+c$$$c          ifrcw  = iopen('WVR.'//xxt(iqxini,iqxend),0,-1,mrecl)
+c$$$c          ifrcwi = iopen('WVI.'//xxt(iqxini,iqxend),0,-1,mrecl)
+c$$$c        else
+c$$$          ifrcw  = iopen('WVR',0,-1,mrecl)
+c$$$          ifrcwi = iopen('WVI',0,-1,mrecl)
+c$$$c        endif
+c$$$c      elseif(chipm) then
+c$$$c        ifrcw  = iopen('WVR',0,-1,mrecl)
+c$$$      endif
+
       nspinmx = nspin
 
 C --- READIN ANFcond------------------------------------
@@ -923,8 +929,8 @@ C ... Set iqxini
         iqxini= nqibz + 1
       elseif(newaniso2) then
         iqxini=1
-      elseif(paralellx0) then
-     &  !skip
+c      elseif(paralellx0) then
+c     &  !skip
       elseif(bzcase()==1) then
         iqxini = 2
       else
@@ -1226,10 +1232,20 @@ c       call Spacegrouprot(symgg,ngrp,plat,natom,pos) ! all inputs.
 
       allocate( llw(nw_i:nw,iqxini:iqxend), llwI(niw,iqxini:iqxend) )
       ifisk=iopen('WKcomponent',0,-1,0)
-      if(.not.chipm) ifvcoud = iopen('Vcoud',0,0,0)
+c      if(.not.chipm) ifvcoud = iopen('Vcoud',0,0,0)
 
-!! == Calculate x0(q,iw) and W == main loop for iq. 
+
+!! == Calculate x0(q,iw) and W == main loop 1001 for iq. 
+!! NOTE: iq=1 (q=0,0,0) write 'EPS0inv', which is used for iq>nqibz for ixc=11 mode
+!! Thus it is necessary to do iq=1 in advance to performom iq >nqibz. 
+!! (or need to modify do 1001 loop).
       do 1001 iq = iqxini,iqxend  ! NOTE: q=(0,0,0) is omitted when iqxini=2
+        if(ixc==101.or.normalm) then
+          ifrcwi = iopen('WVI.'//charnum5(iq),0,-1,mrecl)
+        endif  
+        if (normalm) then
+          ifrcw  = iopen('WVR.'//charnum5(iq),0,-1,mrecl)
+        endif
 !!
         call cputid (0)
         q = qibze(:,iq)
@@ -1280,10 +1296,14 @@ c        endif
           qread=q
         endif   
         if(newaniso2.and.(.not.chipm)) then
-          if(sum(abs(qread))<1d-6) then !reopen Vcoud
-            idummy  = iclose('Vcoud') !close and open again. This is because first data in Voud is for q=0
-            ifvcoud = iopen('Vcoud',0,0,0)
-          endif
+c          if(sum(abs(qread))<1d-6) then !reopen Vcoud
+c            idummy  = iclose('Vcoud') !close and open again. This is because first data in Voud is for q=0
+c            ifvcoud = iopen('Vcoud',0,0,0)
+c          endif
+          iqqv=iq
+          if(sum(abs(qread))<1d-6) iqqv=1 ! for q=(0,0,0)
+          vcoudfile='Vcoud.'//charnum5(iqqv)  !this is closed at the end of do 1001
+          ifvcoud = iopen(trim(vcoudfile),0,-1,0)
           read(ifvcoud) ngb0
           read(ifvcoud) qvv
 c         print *,'qvv=',qvv
@@ -1299,6 +1319,7 @@ c         do igb1=1,ngb0
 c           print *,'qvv sum vcousq ',igb1,vcousq(igb1)
 c         enddo
           read(ifvcoud) zcousq
+          idummy=iclose(trim(vcoudfile))
           vcousq=sqrt(vcousq)
         endif
         print *,'zzzzzzzzzzz1'
@@ -2202,12 +2223,15 @@ c       endif
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
               endif
 
+!! for iq>nqibz
               if(newaniso2.and.iq>nqibz) then
                 read(ifepstinv) epstinv(2:ngb,2:ngb),iqx,iwx
 c                print *,'sumcheck epstinv=',sum(abs(epstinv(2:ngb,2:ngb)))
                 if(iw/=iwx) stop 'hx0fp0: iw/=iwx'  !sanity check
                 sk  (1:ngb)= zxq(1,1:ngb,iw)
-                sks (1:ngb)= zxq(2,1:ngb,iw)
+                sks (1:ngb)= zxq(2,1:ngb,iw) ! WARNING: zxq(2,1:ngb,iw) contains zxq(1:ngb,1,iw).
+                                             ! A little confusing. See nolfco=T case in x0kf_v4h.F.
+                                             !   
 cc                sk(  1:ngb)= zxq(1,1:ngb,iw)
 cc                sks( 1:ngb)= zxq(1:ngb,1,iw)
 
@@ -2254,7 +2278,8 @@ c                zw(1:ngb,1:ngb) = 0d0
 c                write(ifrcw, rec=((iq-iqxini)*(nw-nw_i+1)+ iw-nw_i+1 ) ) zw   !  WP = vsc-v
               else
                 zw(1:ngb,1:ngb) = zw0
-                write(ifrcw, rec=((iq-iqxini)*(nw-nw_i+1)+ iw-nw_i+1 ) ) zw   !  WP = vsc-v
+c                write(ifrcw, rec=((iq-iqxini)*(nw-nw_i+1)+ iw-nw_i+1 ) ) zw   !  WP = vsc-v
+                write(ifrcw, rec= iw-nw_i+1) zw   !  WP = vsc-v
                 call tr_chkwrite("freq_r iq iw realomg trwv=", zw, iw, frr,nblochpmx, nbloch,ngb,iq)
               endif
 !! epsmode
@@ -2683,7 +2708,8 @@ c              zw(1:ngb,1:ngb) = 0d0 ! zw(nblochpmx,nblochpmx)
 c              write(ifrcwi, rec=(iq-iqxini)*niw + iw)  zw    !  WP = vsc-v
             else
               zw(1:ngb,1:ngb) = zw0 ! zw(nblochpmx,nblochpmx)
-              write(ifrcwi, rec=(iq-iqxini)*niw + iw)  zw    !  WP = vsc-v
+c              write(ifrcwi, rec=(iq-iqxini)*niw + iw)  zw    !  WP = vsc-v
+              write(ifrcwi, rec=iw)  zw    !  WP = vsc-v
               call tr_chkwrite("freq_i iq iw imgomg trwv=",zw,iw,freq_i(iw),nblochpmx,nbloch,ngb,iq)
             endif
 
@@ -2766,21 +2792,21 @@ c 1002 continue  ! end of frequency block-loop
         if(allocated(zw0)) deallocate(zw0)
         if(allocated(zxq )) deallocate(zxq)
         if(allocated(zxqi)) deallocate(zxqi)
+
+        if    (ixc==101.or.normalm) then
+          ifrcwi = iclose('WVI.'//charnum5(iq))
+        endif  
+        if (normalm) then
+          ifrcw  = iclose('WVR.'//charnum5(iq))
+        endif
  1001 continue
-C--- end of loop over q point =================================
-
-c=======================================================================
- 1100 continue
+!! === end of loop 1001 for q point ===
 
 
-c$$$c$$$ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-cc        goto 1034 !for debug
-c 9989  continue
-c       print *,' --- start wklm test ---'
-c$$$c$$$ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
 
 !! == W(0) divergent part and W(0) non-analytic constant part.==
+!!   Note that this is only for q=0 -->iq=1
       if(newaniso2.and.ixc==11) then
         print *
         print *,' ==== newaniso2 mode W(0) divergent part ==== '
@@ -2810,22 +2836,25 @@ c       print *,'sumcheck w0,w0i=',sum(abs(w0)),sum(abs(w0i))
         ifisk = iclose('WKcomponent')
         ifisk = iopen('WKcomponent',0,-1,0)
 cmmm
-        do iq = 1,1 !iq=1 only 4pi/k**2 /eps part only ! iq = iqxini,iqxend
+        do iq = 1,1   !iq=1 only 4pi/k**2 /eps part only ! iq = iqxini,iqxend
           q = qibze(:,iq)
-          if(iq>nqibz) then
-            iq0 = iq - nqibz
-            read(ifisk) ngb,nw_ixxx,nwxxx,niwxxx
-            allocate(vw_k(ngb),vw_ks(ngb))
-          endif
+c          if(iq>nqibz) then
+c            iq0 = iq - nqibz
+c            read(ifisk) ngb,nw_ixxx,nwxxx,niwxxx
+c            allocate(vw_k(ngb),vw_ks(ngb))
+c          endif
           do ircw=1,2
-            if    (ircw==1) then;  nini=nw_i;   nend=nw ;   ifrcwx=ifrcw
-            elseif(ircw==2) then;  nini=1;      nend=niw;   ifrcwx=ifrcwi
+            if    (ircw==1) then;  nini=nw_i;   nend=nw;
+              ifrcwx = iopen('WVR.'//charnum5(iq),0,-1,mrecl)
+            elseif(ircw==2) then;  nini=1;     nend=niw;
+              ifrcwx = iopen('WVI.'//charnum5(iq),0,-1,mrecl)
             endif
             do iw=nini,nend
-              if(iq<=nqibz) read(ifrcwx, rec=((iq-iqxini)*(nend-nini+1)+ iw-nini+1 ) ) zw !(1:ngb,1:ngb)
-              if( iq==1 ) then
-                if(ircw==1) zw(1,1) = w0(iw)
-                if(ircw==2) zw(1,1) = w0i(iw)
+c             if(iq<=nqibz) read(ifrcwx, rec=((iq-iqxini)*(nend-nini+1)+ iw-nini+1 ) ) zw !(1:ngb,1:ngb)
+              read(ifrcwx, rec= iw-nini+1) zw !(1:ngb,1:ngb)
+c              if( iq==1 ) then
+              if(ircw==1) zw(1,1) = w0(iw)
+              if(ircw==2) zw(1,1) = w0i(iw)
 c$$$cmmm3 cccccccccccccccccccccccccccccccccccccccccc
 c$$$          elseif( iq>nqibz ) then !-->In future, we store sperical average of zw below to zw(at q=0)===
 c$$$            print *,'ddd skip readin ifisk ddddddddd'
@@ -2843,9 +2872,10 @@ c$$$              if(ircw==2) zw(igb1,igb2)=vc1vc2/llwI(iw,iq0)
 c$$$            enddo
 c$$$            enddo
 c$$$ccccccccccccccccccccccccccccccccccccccccccccccc
-              endif
+c              endif
 c          if(iq==1.or.iq>nqibz) write(ifrcwx,rec=((iq-iqxini)*(nend-nini+1)+ iw-nini+1 ) ) zw !(1:ngb,1:ngb)
-              write(ifrcwx,rec=((iq-iqxini)*(nend-nini+1)+ iw-nini+1 ) ) zw !(1:ngb,1:ngb)
+c             write(ifrcwx,rec=((iq-iqxini)*(nend-nini+1)+ iw-nini+1 ) ) zw !(1:ngb,1:ngb)
+              write(ifrcwx,rec= iw-nini+1 ) zw !(1:ngb,1:ngb)
 cccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccmmm3
 c          if(iq<=nqibz) then
@@ -2864,8 +2894,13 @@ c           enddo
 c          endif
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
             enddo
+            if    (ircw==1) then
+              ifrcwx = iclose('WVR.'//charnum5(iq))
+            elseif(ircw==2) then
+              ifrcwx = iclose('WVI.'//charnum5(iq))
+            endif
           enddo
-          if(iq>nqibz) deallocate(vw_k,vw_ks)
+c          if(iq>nqibz) deallocate(vw_k,vw_ks)
         enddo
       endif
 
@@ -3065,7 +3100,7 @@ c---------------------------------------------------------------------
 !! == Get sqrt of ppovl ==
       implicit none
       real(8)::q(3)
-      integer(4):: ngc,ngb,nbloch,i,nmxx,ix,iy,nev
+      integer:: ngc,ngb,nbloch,i,nmxx,ix,iy,nev
       complex(8):: sqovlp(ngb,ngb)
       complex(8),allocatable:: ooo(:,:),ppo(:,:),sqovlpi(:,:),ppovl(:,:)
       complex(8),allocatable:: ovlp(:,:),evec(:,:)
@@ -3118,7 +3153,7 @@ c--------------------------------------------------------------------
       subroutine tr_chkwrite(tagname,zw,iw,freqq,nblochpmx,nbloch,ngb,iq)
 !! == check write for zw, no output == !!
       implicit none
-      integer(4):: nblochpmx,nbloch,ngb,iw,i,iq
+      integer:: nblochpmx,nbloch,ngb,iw,i,iq
       complex(8):: zw(nblochpmx,nblochpmx),trwv,trwv2
       real(8):: freqq
       logical :: smbasis
@@ -3142,7 +3177,7 @@ c      enddo
 c--------------------------------------------------------------------
 C      subroutine test_xxx(tagname,zw,iw,freqq,nblochpmx,nbloch,ngb,iq)
 C      implicit none
-C      integer(4):: nblochpmx,nbloch,ngb,iw,i,iq
+C      integer:: nblochpmx,nbloch,ngb,iw,i,iq
 C      complex(8):: zw(nblochpmx,nblochpmx),trwv,trwv2
 C      real(8):: freqq
 C      logical :: smbasis
@@ -3157,8 +3192,8 @@ c--------------------------------------------------------------------
       function matcinvf(a) result(b)
 !!== Test routine for Inversion ==
       implicit none
-      integer(4) :: info,n,n2(2)
-      integer(4),allocatable :: ipiv(:)
+      integer :: info,n,n2(2)
+      integer,allocatable :: ipiv(:)
       complex(8):: a(:,:), b(1)
       complex(8),allocatable:: work(:)
       n2= SHAPE(a)
@@ -3182,7 +3217,7 @@ c--------------------------------------------------------------------
       subroutine diagno00(nbloch,wpvc,eval)
 !! == ontain eigenvalue only for input complex matrix wpvc(nbloch,nbloch)
       implicit none
-      integer(4):: nbloch,nmx,nev,i
+      integer:: nbloch,nmx,nev,i
       complex(8),allocatable:: ovlpc(:,:),evecc(:,:),wpvcc(:,:)
       real(8)::emx,eval(nbloch)
       complex(8):: wpvc(nbloch,nbloch)
